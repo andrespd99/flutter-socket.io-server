@@ -29,3 +29,5 @@ class Bands {
         );
     }
 }
+
+module.exports = Bands;
