@@ -18,10 +18,6 @@ io.on('connection', client => {
 
     client.emit('active-bands', bands.getBands());
 
-    client.on('disconnect', () => {
-        console.log('Client disconnected!');
-    });
-
     client.on("message", (payload) => {
         console.log('Message', payload)
 
@@ -30,6 +26,14 @@ io.on('connection', client => {
         });
     });
 
-    client.on('emit-message', (payload) => client.broadcast.emit('new-message', payload));
+    client.on('vote-band', (payload) => {
+        bands.voteBand(payload.id);
+        io.emit('active-bands', bands.getBands());
+    });
+
+    client.on('disconnect', () => {
+        console.log('Client disconnected!');
+    });
+    // client.on('emit-message', (payload) => client.broadcast.emit('new-message', payload));
 
 });
