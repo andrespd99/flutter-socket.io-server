@@ -18,4 +18,6 @@ io.on('connection', client => {
         });
     });
 
+    client.on('emit-message', (payload) => client.broadcast.emit('new-message', payload));
+
 });

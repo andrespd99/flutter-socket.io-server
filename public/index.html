@@ -21,8 +21,8 @@
 
       socket.emit("message", { name: "Andres" });
 
-      socket.on("message", (payload) => {
-        console.log("Lisening", payload);
+      socket.on("new-message", (payload) => {
+        console.log("Listening", payload);
       });
     </script>
   </body>
